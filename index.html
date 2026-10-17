@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123d2b">
+  <meta name="description" content="Discover online earning ideas, learn new skills, and explore opportunities in Papua New Guinea.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <title>PNG EARN CONNECT</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="brand" id="brandHome" aria-label="Go to welcome screen">
+        <span class="brand-mark">PEC</span>
+        <span class="brand-text"><strong>PNG EARN</strong><small>CONNECT</small></span>
+      </button>
+      <button class="text-button hidden" id="logoutBtn">Log out</button>
+    </header>
+
+    <main>
+      <section class="screen active" id="welcomeScreen">
+        <div class="hero">
+          <div class="hero-badge">🇵🇬 Made for Papua New Guinea</div>
+          <div class="hero-logo">PEC<span>↗</span></div>
+          <h1>PNG EARN<br><em>CONNECT</em></h1>
+          <p class="hero-subtitle">Connecting people to opportunities.</p>
+          <p class="muted hero-copy">Discover online earning ideas, learn new skills, and explore legitimate opportunities in one place.</p>
+          <div class="hero-actions">
+            <button class="button primary" id="showRegister">Create account <span>→</span></button>
+            <button class="button secondary" id="showLogin">Log in</button>
+          </div>
+        </div>
+        <div class="trust-row">
+          <div><span class="trust-icon">✓</span><span>Learn safely</span></div>
+          <div><span class="trust-icon">◎</span><span>Explore options</span></div>
+          <div><span class="trust-icon">↗</span><span>Grow skills</span></div>
+        </div>
+        <p class="fine-print">PNG EARN CONNECT shares opportunities for learning and research. Earnings are not guaranteed.</p>
+      </section>
+
+      <section class="screen" id="registerScreen">
+        <div class="section-heading">
+          <span class="eyebrow">GET STARTED</span>
+          <h2>Create your account</h2>
+          <p>Start with the details you use to sign in.</p>
+        </div>
+        <form id="registerForm" class="card form-card">
+          <label>Full name<input id="regName" autocomplete="name" required maxlength="80" placeholder="Enter your full name"></label>
+          <label>PNG mobile number<input id="regPhone" inputmode="tel" autocomplete="tel" required placeholder="e.g. 7XXXXXXX" pattern="[0-9+ ]{8,16}"></label>
+          <label>Email address <span class="optional">(optional)</span><input id="regEmail" type="email" autocomplete="email" placeholder="you@example.com"></label>
+          <label>Create password<input id="regPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters"></label>
+          <label>Confirm password<input id="regConfirm" type="password" autocomplete="new-password" minlength="8" required placeholder="Enter password again"></label>
+          <label class="check-row"><input id="agreeTerms" type="checkbox" required><span>I agree to use this demo responsibly and understand that earnings are not guaranteed.</span></label>
+          <button class="button primary full" type="submit">Create account →</button>
+          <p class="form-foot">Already have an account? <button type="button" class="inline-button" id="registerToLogin">Log in</button></p>
+        </form>
+      </section>
+
+      <section class="screen" id="loginScreen">
+        <div class="section-heading">
+          <span class="eyebrow">WELCOME BACK</span>
+          <h2>Log in</h2>
+          <p>Access your PNG EARN CONNECT demo account.</p>
+        </div>
+        <form id="loginForm" class="card form-card">
+          <label>Mobile number or email<input id="loginIdentity" autocomplete="username" required placeholder="Phone number or email"></label>
+          <label>Password<input id="loginPassword" type="password" autocomplete="current-password" required placeholder="Your password"></label>
+          <button class="button primary full" type="submit">Log in →</button>
+          <p class="form-foot">New here? <button type="button" class="inline-button" id="loginToRegister">Create an account</button></p>
+          <p class="demo-note">Demo note: account details are stored only in this browser on this device. This is not production-grade authentication.</p>
+        </form>
+      </section>
+
+      <section class="screen" id="introScreen">
+        <div class="step-line"><span class="step-dot done">1</span><span></span><span class="step-dot active-step">2</span><span></span><span class="step-dot">3</span></div>
+        <div class="section-heading">
+          <span class="eyebrow">YOUR INTRODUCTION</span>
+          <h2>Tell us about your goals</h2>
+          <p>In up to 60 seconds, explain why you want to use PNG EARN CONNECT. You can record a video or write a short introduction.</p>
+        </div>
+        <div class="card camera-card">
+          <div class="camera-stage" id="cameraStage">
+            <video id="cameraPreview" autoplay muted playsinline class="hidden"></video>
+            <div id="cameraPlaceholder" class="camera-placeholder">
+              <div class="camera-symbol">◉</div>
+              <strong>Your camera preview will appear here</strong>
+              <small>Allow camera and microphone access when asked.</small>
+            </div>
+            <span class="recording-pill hidden" id="recordingPill">● RECORDING <b id="recordTimer">00:00</b></span>
+          </div>
+          <div class="camera-actions">
+            <button class="button secondary" type="button" id="startCamera">Open camera</button>
+            <button class="button primary" type="button" id="startRecord" disabled>● Record</button>
+            <button class="button danger hidden" type="button" id="stopRecord">Stop</button>
+          </div>
+          <video id="recordedVideo" class="recorded-video hidden" controls playsinline></video>
+          <p class="status-line" id="cameraStatus" role="status">Camera is off.</p>
+          <label class="text-area-label">Or write your introduction <span class="optional">(optional)</span>
+            <textarea id="introText" rows="4" maxlength="500" placeholder="I want to use PNG EARN CONNECT because…"></textarea>
+          </label>
+          <div class="counter"><span id="introCount">0</span>/500 characters</div>
+          <div class="privacy-note"><span>🔒</span><p>Review your recording before submitting. This demo does not upload your video to a server. In a real app, storage and access rules must be explained clearly.</p></div>
+          <button class="button primary full" id="submitIntro" type="button">Save introduction and continue →</button>
+          <button class="text-button centered" id="skipIntro" type="button">Do this later</button>
+        </div>
+      </section>
+
+      <section class="screen" id="profileScreen">
+        <div class="step-line"><span class="step-dot done">1</span><span></span><span class="step-dot done">2</span><span></span><span class="step-dot active-step">3</span></div>
+        <div class="section-heading">
+          <span class="eyebrow">YOUR PROFILE</span>
+          <h2>Make it yours</h2>
+          <p>Add a few details so your profile is ready.</p>
+        </div>
+        <form id="profileForm" class="card form-card">
+          <div class="avatar-upload">
+            <div class="avatar" id="avatarPreview">＋</div>
+            <div><strong>Profile photo</strong><p class="muted small">Optional · JPG or PNG</p><label class="upload-button">Choose photo<input type="file" id="profilePhoto" accept="image/*" hidden></label></div>
+          </div>
+          <label>Display name<input id="profileName" required maxlength="60" placeholder="How should we call you?"></label>
+          <label>Province<select id="profileProvince" required><option value="">Select your province</option><option>Central</option><option>Chimbu / Simbu</option><option>Eastern Highlands</option><option>East New Britain</option><option>East Sepik</option><option>Enga</option><option>Gulf</option><option>Hela</option><option>Jiwaka</option><option>Madang</option><option>Manus</option><option>Milne Bay</option><option>Morobe</option><option>New Ireland</option><option>Northern / Oro</option><option>Sandaun / West Sepik</option><option>Southern Highlands</option><option>Western</option><option>Western Highlands</option><option>West New Britain</option><option>Autonomous Region of Bougainville</option><option>National Capital District (NCD)</option></select></label>
+          <label>Skills and interests<textarea id="profileBio" rows="3" maxlength="300" placeholder="e.g. video editing, writing, sales, learning digital skills"></textarea></label>
+          <button class="button primary full" type="submit">Save profile and open dashboard →</button>
+        </form>
+      </section>
+
+      <section class="screen" id="dashboardScreen">
+        <div class="dashboard-welcome">
+          <div><span class="eyebrow">YOUR OPPORTUNITY HUB</span><h2>Welcome, <span id="dashName">friend</span> 👋</h2><p>Take your next step at your own pace.</p></div>
+          <div class="mini-avatar" id="dashAvatar">P</div>
+        </div>
+        <div class="notice-card"><span class="notice-icon">✦</span><div><strong>Small steps can build skills.</strong><p>Check each opportunity carefully before sharing personal information or paying any fee.</p></div></div>
+        <div class="section-title-row"><h3>Explore your dashboard</h3><span class="tiny-label">DEMO</span></div>
+        <div class="feature-grid">
+          <button class="feature-card" data-feature="earning"><span class="feature-icon green">↗</span><strong>Earning opportunities</strong><small>Explore ways to earn</small><span class="card-arrow">→</span></button>
+          <button class="feature-card" data-feature="affiliate"><span class="feature-icon gold">◇</span><strong>Affiliate marketing</strong><small>Learn about commissions</small><span class="card-arrow">→</span></button>
+          <button class="feature-card" data-feature="jobs"><span class="feature-icon blue">▤</span><strong>Online jobs</strong><small>Remote work basics</small><span class="card-arrow">→</span></button>
+          <button class="feature-card" data-feature="learn"><span class="feature-icon red">✦</span><strong>Learn to earn</strong><small>Build digital skills</small><span class="card-arrow">→</span></button>
+          <button class="feature-card" data-feature="introduction"><span class="feature-icon purple">◉</span><strong>My introduction</strong><small>Review your saved details</small><span class="card-arrow">→</span></button>
+          <button class="feature-card" data-feature="profile"><span class="feature-icon dark">♙</span><strong>My profile</strong><small>Update your details</small><span class="card-arrow">→</span></button>
+        </div>
+        <div class="section-title-row"><h3>Your account</h3></div>
+        <div class="account-card"><div><span class="muted small">Account status</span><strong id="accountStatus">Demo profile saved</strong></div><span class="status-badge">● Active demo</span></div>
+        <div class="bottom-nav">
+          <button class="nav-item selected" data-nav="dashboard"><span>⌂</span>Home</button>
+          <button class="nav-item" data-nav="opportunities"><span>↗</span>Explore</button>
+          <button class="nav-item" data-nav="profile"><span>♙</span>Profile</button>
+        </div>
+      </section>
+
+      <section class="screen" id="featureScreen">
+        <button class="back-button" id="backDashboard">← Back to dashboard</button>
+        <div class="section-heading feature-detail-heading">
+          <span class="eyebrow" id="featureEyebrow">EXPLORE</span>
+          <h2 id="featureTitle">Earning opportunities</h2>
+          <p id="featureDescription">Learn about options you can research.</p>
+        </div>
+        <div id="featureContent" class="feature-content"></div>
+      </section>
+    </main>
+    <footer class="app-footer"><span>PEC</span><p>PNG EARN CONNECT · Connecting people to opportunities</p></footer>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="js/app.js"></script>
+  <script>if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) { window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js").catch(() => {})); }</script>
+</body>
+</html>
